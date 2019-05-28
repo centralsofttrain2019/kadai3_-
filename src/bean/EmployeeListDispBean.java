@@ -7,6 +7,14 @@ public class EmployeeListDispBean
 	private List<EmployeeDispBean> empList;
 	private String message;
 
+	private LoginBean loginbean;
+
+	public LoginBean getLoginBean() {
+		return loginbean;
+	}
+	public void setLoginBean(LoginBean loginbean) {
+		this.loginbean = loginbean;
+	}
 	public List<EmployeeDispBean> getEmpList() {
 		return empList;
 	}
@@ -26,5 +34,9 @@ public class EmployeeListDispBean
 	}
 
 
+	public String getLoginInfo()
+	{
+		return loginbean.getLoginInfo();
+	}
 
 }

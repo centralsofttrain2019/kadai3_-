@@ -2,8 +2,6 @@ package web;
 
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.EmployeeDispBean;
-import dao.Dao;
-import dao.EmployeesDao;
+import bean.LoginBean;
+import service.EmployeeService;
 
 /**
  * Servlet implementation class IndexStartServlet
@@ -36,19 +34,13 @@ public class EmployeeDispServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		EmployeeDispBean bean = null;//Employee bean = new Employee;
+		EmployeeService service = new EmployeeService();
+		EmployeeDispBean bean = new EmployeeDispBean();
+        bean = service.findByKey( request.getParameter("id") );
 
-		try (Connection con = Dao.getConnection();) {
-
-			EmployeesDao dao = new EmployeesDao(con);
-
-			int id = Integer.parseInt(request.getParameter("id"));
-			bean = dao.findByKey(id);//dao.findByKey(bean,id);beanが生き残る
-
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-
-		}
+		//セッションからログイン情報を取得
+		LoginBean loginBean = (LoginBean)request.getSession().getAttribute("loginBean");
+		bean.setLoginBean(loginBean);
 
 		request.setAttribute("bean", bean);
 

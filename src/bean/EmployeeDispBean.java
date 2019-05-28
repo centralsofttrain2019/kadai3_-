@@ -14,6 +14,15 @@ public class EmployeeDispBean
 	private 	LocalDate	birthday	;//	DATE,
 	private 	String	bloodType	;//	VARCHAR(2),
 
+	private		LoginBean	loginbean;
+
+
+	public LoginBean getLoginBean() {
+		return loginbean;
+	}
+	public void setLoginBean(LoginBean loginbean) {
+		this.loginbean = loginbean;
+	}
 	public int getEmployeeID() {
 		return employeeID;
 	}
@@ -70,6 +79,11 @@ public class EmployeeDispBean
 				+ ",\n eMail=" + eMail + ",\n weight="
 				+ weight + ",\n hireFiscalYear=" + hireFiscalYear + ",\n birthday="
 				+ birthday + ",\n bloodType=" + bloodType + "\n]";
+	}
+
+	public String getLoginInfo()
+	{
+		return loginbean.getLoginInfo();
 	}
 
 

@@ -8,16 +8,25 @@ public class LoginBean implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	//private String password;
+	private String name;
 	private String loginId;
 	private LocalDateTime loginDateTime;
 
-//	public String toString()
-//	{
-//		return "user id:" + this.getLoginId()
-//				+ " login at:" + this.getLoginDateTime().toString();
-//	}
+	public String getLoginInfo()
+	{
+		return "login name:" + this.getName() + " login id:" + this.getLoginId()
+				+ " login at:" + this.getLoginDateTime().toString();
+	}
 
-//	public String getPassword() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	//	public String getPassword() {
 //		return password;
 //	}
 //	public void setPassword(String password) {
@@ -35,4 +44,5 @@ public class LoginBean implements Serializable
 	public void setLoginDateTime(LocalDateTime loginDateTime) {
 		this.loginDateTime = loginDateTime;
 	}
+
 }

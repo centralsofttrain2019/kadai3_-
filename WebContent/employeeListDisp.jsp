@@ -9,6 +9,7 @@
 <title>全従業員表示画面</title>
 </head>
 <body>
+<%=bean.getLoginInfo() %> <br>
 <strong> 従業員情報</strong>
 <table>
 <tr>

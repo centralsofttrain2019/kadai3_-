@@ -9,7 +9,7 @@
 <title>ID入力画面</title>
 </head>
 <body>
- ようこそJavaWebの世界へ  <%=bean.getLoginInfo() %>
+ログイン情報 <%=bean.getLoginInfo() %>
 
 <form  method="POST" action="EmployeeDispServlet">
 従業員のIDを入力してください。<br>
@@ -17,7 +17,7 @@
 
 	<input type="submit" value="IDでの検索">
 </form>
-<form  method="POST" action="EmployeeAllServlet">
+<form  method="POST" action="EmployeeListDispServlet">
 	<input type="submit" value="全従業員表示">
 </form>
 

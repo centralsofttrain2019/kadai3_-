@@ -9,6 +9,7 @@
 <title>BeanStartWebApp</title>
 </head>
 <body>
+<%=bean.getLoginInfo() %> <br>
 従業員情報を表示します<br>
 
 <%=bean.getEmployeeID() %> <br>

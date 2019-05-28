@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.EmployeeDispBean;
 import bean.LoginBean;
 import service.EmployeeService;
 
@@ -37,29 +38,30 @@ public class LoginSrvlet extends HttpServlet {
             )  throws ServletException, IOException
     {
 
-        System.out.println("StartServletが実行されました。");
+        System.out.println("LoginServletが実行されました。");
+
 
         //画面から入力したデータを取得する
-
-
         String str =request.getParameter("loginId");
         byte[] bi = str.getBytes("iso-8859-1");
         String loginId = new String( bi, "UTF-8" );
-
         //String password = request.getParameter("password");
 
-        //bean のインスタンスを生成する
+
+        //インスタンスの生成
+        EmployeeService service = new EmployeeService();
         LoginBean bean = new LoginBean();
+        EmployeeDispBean emp = new EmployeeDispBean();
+
+
+        emp = service.findByKey( loginId );
+
+
+        bean.setName( emp.getEmployeeName());
         bean.setLoginId( loginId );
         //bean.setPassword( password );
         bean.setLoginDateTime( LocalDateTime.now() );
 
-        //serviceのインスタンスを生成する
-        EmployeeService service = new EmployeeService();
-        service.findByKey( loginId );
-
-        //セッションの今回の計算結果を保存
-        //request.getSession().setAttribute("loginBean", bean);
 
         HttpSession ss= request.getSession();
         ss.setAttribute("loginBean", bean);
@@ -67,6 +69,7 @@ public class LoginSrvlet extends HttpServlet {
 
         //beanをリクエストにセット キー名は「bean」とする
         request.setAttribute("bean", bean);
+
 
         //JSPに遷移する
         RequestDispatcher disp = request.getRequestDispatcher("/login.jsp");
